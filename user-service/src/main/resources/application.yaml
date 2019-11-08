@@ -1,0 +1,29 @@
+# 端口
+server:
+  port: 8089
+  #  拦截路径
+  servlet:
+    path: /
+#    日志级别
+logging:
+  level:
+    com.zgc: debug
+    #    org.springframework: debug
+#数据库
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/test
+    username: root
+    password: 123456
+  thymeleaf:
+    cache: false
+#    mode: HTML5
+#Mybatis配置，驼峰功能
+mybatis:
+  #  configuration:
+  #    map-underscore-to-camel-case: true
+  mapper-locations: mapper/*.xml
+  type-aliases-package: com.zgc.user.pojo
+
+##thymeleaf相关配置spring.thymeleaf.encoding=UTF-8
