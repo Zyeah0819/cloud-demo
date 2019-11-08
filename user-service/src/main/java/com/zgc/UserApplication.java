@@ -2,8 +2,9 @@ package com.zgc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import tk.mybatis.spring.annotation.MapperScan;
-
+@EnableDiscoveryClient/*没有设死连接eureka，兼容性好*/
 @SpringBootApplication
 @MapperScan("com.zgc.user.mapper")
 public class UserApplication {
