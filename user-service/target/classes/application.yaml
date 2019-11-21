@@ -34,4 +34,11 @@ mybatis:
 eureka:
   client:
     service-url:
-      defaultZone: http://127.0.0.1:8090/eureka
+      defaultZone: http://127.0.0.1:8090/eureka,http://127.0.0.1:8092/eureka
+  instance:
+    prefer-ip-address: true # 当其它服务获取地址时提供ip而不是hostname
+    ip-address: 127.0.0.1
+#    心跳不宜过高，过高会加重负载，服务续约的间隔，默认为30秒
+    lease-renewal-interval-in-seconds: 30
+#    服务失效时间，默认值90秒
+    lease-expiration-duration-in-seconds: 90

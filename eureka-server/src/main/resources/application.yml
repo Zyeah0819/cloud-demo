@@ -7,7 +7,9 @@ eureka:
   client:
     service-url:
       defaultZone: http://127.0.0.1:8090/eureka
+#      是否注册自己为eureka服务
+    register-with-eureka: false
 #      指定IP地址
   instance:
-    prefer-ip-address: true
+    prefer-ip-address: true # 当其它服务获取地址时提供ip而不是hostname
     ip-address: 127.0.0.1

@@ -1,0 +1,43 @@
+server:
+  port: 10010
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8090/eureka
+spring:
+  application:
+    name: getaway
+zuul:
+  retryable: true
+#  prefix: /api #添加路由前缀
+  routes:
+    user-service:
+      path: /user/**
+      serviceId: user-service
+      strip-prefix: false  #去掉user前缀
+  ignored-services:
+    - consumer-service
+  #    haha:
+#      path: /user-service/**
+#      serviceId: user-service    #转到eureka,动态获取服务地址
+#上面三行的简化
+ #   user-service: /user-service/** #可以全都不配，因为默认会有默认的配置,一般不适用默认配置
+
+
+#      url: http://127.0.0.1:8089 #请求路径被转到对应的地址，（1.路由功能）。
+
+
+
+ribbon:
+  ConnectTimeout: 250 # 连接超时时间(ms)
+  ReadTimeout: 2000 # 通信超时时间(ms)
+  OkToRetryOnAllOperations: true # 是否对所有操作重试
+  MaxAutoRetriesNextServer: 2 # 同一服务不同实例的重试次数
+  MaxAutoRetries: 1 # 同一实例的重试次数
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMillisecond: 6000 # 熔断超时时长：6000ms

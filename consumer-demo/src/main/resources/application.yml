@@ -2,8 +2,31 @@ server:
   port: 8091
 spring:
   application:
-    name: consumer-demo
+    name: consumer-service
 eureka:
   client:
     service-url:
-      defaultZone: http://127.0.0.1:8090/eureka
+      defaultZone: http://127.0.0.1:8090/eureka,http://127.0.0.1:8092/eureka
+#    拉取周期
+    registry-fetch-interval-seconds: 3
+    instance:
+      prefer-ip-address: true # 当其它服务获取地址时提供ip而不是hostname
+      ip-address: 127.0.0.1
+#user-service:
+#  ribbon:
+#全局超时时长
+feign: #hystrix默认关闭
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+ribbon:  #超时时长设置
+  ConnectionTimeOut: 500
+  ReadTimeOut: 2000
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule

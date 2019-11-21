@@ -12,9 +12,16 @@ import java.util.List;
 @Service
 public class UserService {
     @Autowired
-    private UserMapper userMapper;
+//    @Resource 会没有下划线提示，
+    private UserMapper userMapper;//有下划线，但不影响使用,可以使用降低提示来消掉提示
 
     public User queryUserById(Integer id){
+        //手动设执行超时
+//        try {
+//            Thread.sleep(2000L);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         return userMapper.selectByPrimaryKey(id);
     }
 
